@@ -56,3 +56,51 @@ print(num)
 
 sample_list=[1,2,3,4,5]
 list(map(lambda x:x**2,sample_list))
+
+maped_data=list(map(lambda x:x[1:10]+[x[12]]+[x[14]],complete_data))
+
+maped_data
+
+print(maped_data[4])
+
+Column_names=[
+    'names'
+    'total cases'
+    'new_cases'
+    'total_deaths'
+    'new _deaths'
+    'total_recovered'
+    'new_recovered'
+    'active_cases'
+    'serious_cases'
+    'total_tests'
+    'populations'
+]
+
+import pandas as pd
+
+df=pd.DataFrame(complete_data)
+df.head() #first five data means head
+
+df=pd.DataFrame(complete_data)
+df.head(10) # 10 datas
+
+df.tail()  # last five datas
+
+df=pd.DataFrame(maped_data, columns=column_names) # giving column names
+df.head()
+
+df.to_csv('covid_data.csv') #save to csv
+
+df.to_csv('covid_data_summary.csv') #save to csv
+
+#read data
+
+df_read = pd.read_csv('covid_data_summary.csv')
+print(type(df_read))
+
+df_read.isnull()
+
+import seaborn as sns
+
+sns.heatmap(df_read.isnull().T)  #plotting heatmap using seaborn
